@@ -1,7 +1,0 @@
-@article{Ding_DeepMapping_arXiv18,
-  title={DeepMapping: Unsupervised Map Estimation From Multiple Point Clouds},
-  author={Ding, Li and Feng, Chen},
-  journal={arXiv preprint arXiv:1811.11397},
-  year={2018}
-}
-
