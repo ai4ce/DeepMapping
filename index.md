@@ -2,7 +2,7 @@
 
 [**Li Ding** (University of Rochester)](https://www.hajim.rochester.edu/ece/lding6/), [**Chen Feng** (NYU Tandon School of Engineering)](https://simbaforrest.github.io)
 
-|[Abstract](#abstract)|[Paper](#paper-arxiv)|[Code](#code-tbd)|[Results](#results)|Acknowledgment(#acknowledgment)|
+|[Abstract](#abstract)|[Paper](#paper-arxiv)|[Code](#code-tbd)|[Results](#results)|[Acknowledgment](#acknowledgment)|
 
 ![3D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/sample_vis_AVD.gif)
 ![3D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/sample2_vis_AVD.gif)
