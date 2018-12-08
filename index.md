@@ -45,9 +45,19 @@ To cite our paper:
 </script>
 
 Our key idea is to convert the following optimization problem
-$$ T^{\star}(S) = \operatorname*{arg\,min}_{T} \mathcal{L} (T,S) $$
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation}
+T^{\star}(S) = \operatorname*{arg\,min}_{T} \mathcal{L} (T,S)
+\end{equation} %]]></script>
+
 to
-$$ (\theta^{\star},\phi^{\star}) = \operatorname*{arg\,min}_{\theta,\phi} \mathcal{L}_{\phi} (f_{\theta} (S), S) $$
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation}
+(\theta^{\star},\phi^{\star}) = \operatorname*{arg\,min}_{\theta,\phi} \mathcal{L}_{\phi} (f_{\theta} (S), S)
+\end{equation} %]]></script>
+
 through the use of deep neural networks as auxiliary functions.
 
 ### Results
