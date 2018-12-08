@@ -25,41 +25,6 @@ To cite our paper:
 ### Code (TBD)
 ![overview](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-overview.jpg)
 
-### Key Idea
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      displayMath: [ ['$$','$$'] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-Our key idea is to convert the following optimization problem
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{equation}
-T^{\star}(S) = \operatorname*{arg\,min}_{T} \mathcal{L} (T,S)
-\end{equation} %]]></script>
-
-to
-
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{equation}
-(\theta^{\star},\phi^{\star}) = \operatorname*{arg\,min}_{\theta,\phi} \mathcal{L}_{\phi} (f_{\theta} (S), S)
-\end{equation} %]]></script>
-
-through the use of deep neural networks as auxiliary functions.
-
 ### Results
 #### 2D Mapping (Simulated Data)
 ![2D Mapping Results 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-2Dmapping.jpg)
