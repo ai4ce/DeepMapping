@@ -1,6 +1,6 @@
 # DeepMapping: Unsupervised Map Estimation From Multiple Point Clouds
 
-[**Li Ding** (University of Rochester)](https://www.hajim.rochester.edu/ece/lding6/), [**Chen Feng** (NYU Tandon School of Engineering)](https://simbaforrest.github.io)
+[**Li Ding** (University of Rochester)](https://www.hajim.rochester.edu/ece/lding6/), [**Chen Feng** (NYU Tandon School of Engineering)](https://ai4ce.github.io)
 
 Conference on Computer Vision and Pattern Recognition (CVPR) 2019, Oral Presentation
 
@@ -45,7 +45,7 @@ To cite our paper:
 ![3D Mapping Results 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-3Dmapping2.jpg)
 
 ### Acknowledgment
-This work was partially done while the authors were with MERL, and was supported in part by NYU Tandon School of Engineering and MERL. [Chen Feng](https://simbaforrest.github.io) is the corresponding author. We gratefully acknowledge the helpful comments and suggestions from Yuichi Taguchi, Dong Tian, Weiyang Liu, and Alan Sullivan.
+This work was partially done while the authors were with MERL, and was supported in part by NYU Tandon School of Engineering and MERL. [Chen Feng](https://ai4ce.github.io) is the corresponding author. We gratefully acknowledge the helpful comments and suggestions from Yuichi Taguchi, Dong Tian, Weiyang Liu, and Alan Sullivan.
 
 <hr>
 <div id="visitormap">
