@@ -2,15 +2,17 @@
 
 [**Li Ding** (University of Rochester)](https://www.hajim.rochester.edu/ece/lding6/), [**Chen Feng** (NYU Tandon School of Engineering)](https://simbaforrest.github.io)
 
-|[Abstract](#abstract)|[Paper](#paper-arxiv)|[Code](#code-tbd)|[Results](#results)|[Acknowledgment](#acknowledgment)|
+Conference on Computer Vision and Pattern Recognition (CVPR) 2019, Oral Presentation
 
-![3D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample1.gif)
-![3D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample2.gif)
-![3D Mapping Process Example 3](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample3.gif)
+|[Abstract](#abstract)|[Paper](#paper-arxiv)|[Code](#code-tbd)|[Results](#results)|[Acknowledgment](#acknowledgment)|
 
 ![2D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_2D_sample1.gif)
 ![2D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_2D_sample2.gif)
 ![2D Mapping Process Example 3](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_2D_sample3.gif)
+
+![3D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample1.gif)
+![3D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample2.gif)
+![3D Mapping Process Example 3](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample3.gif)
 
 
 ### Abstract
@@ -28,6 +30,10 @@ To cite our paper:
 ```
 
 ### Code (TBD)
+<p align="center">
+<img src='./resources/ate_vs_epochs.jpg' width="600">
+</p>
+
 ![overview](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-overview.jpg)
 
 ### Results
