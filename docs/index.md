@@ -2,9 +2,11 @@
 
 [**Li Ding** (University of Rochester)](https://www.hajim.rochester.edu/ece/lding6/), [**Chen Feng** (NYU Tandon School of Engineering)](https://ai4ce.github.io)
 
-Conference on Computer Vision and Pattern Recognition (CVPR) 2019, Oral Presentation
+IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2019, **Oral Presentation**
 
-|[Abstract](#abstract)|[Paper](#paper-arxiv)|[Code](#code-tbd)|[Results](#results)|[Acknowledgment](#acknowledgment)|
+|[Abstract](#abstract)|[Paper](#paper-arxiv)|[Code](#code-github)|[Results](#results)|[Acknowledgment](#acknowledgment)|
+
+![Teaser](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/ate_vs_epochs.jpg)
 
 ![2D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_2D_sample1.gif)
 ![2D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_2D_sample2.gif)
@@ -29,10 +31,26 @@ To cite our paper:
 }
 ```
 
-### Code (TBD)
-<p align="center">
-<img src='./docs/resources/ate_vs_epochs.jpg' width="600">
-</p>
+### [Code (GitHub)](https://github.com/ai4ce/DeepMapping)
+
+```
+The code is copyrighted by the authors. Permission to copy and use 
+ this software for noncommercial use is hereby granted provided: (a)
+ this notice is retained in all copies, (2) the publication describing
+ the method (indicated below) is clearly cited, and (3) the
+ distribution from which the code was obtained is clearly cited. For
+ all other uses, please contact the authors.
+ 
+ The software code is provided "as is" with ABSOLUTELY NO WARRANTY
+ expressed or implied. Use at your own risk.
+
+This code provides an implementation of the method described in the
+following publication: 
+
+Li Ding and Chen Feng, "DeepMapping: Unsupervised Map Estimation From 
+ Multiple Point Clouds," The IEEE Conference on Computer Vision and 
+ Pattern Recognition (CVPR), June, 2019.
+```
 
 ![overview](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/deepmapping-overview.jpg)
 
