@@ -1,0 +1,5 @@
+torch>=0.4.1
+open3d-python>0.4
+scipy
+matplotlib
+numpy

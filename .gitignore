@@ -1,0 +1,10 @@
+.vscode/
+.ipynb_checkpoints/
+__pycache__/
+
+data/
+results/
+
+*.pyc
+*tar.gz
+*tar
