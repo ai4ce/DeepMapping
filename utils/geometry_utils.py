@@ -185,7 +185,7 @@ def icp(src,dst,nv=None,n_iter=100,init_pose=[0,0,0],torlerance=1e-6,metrics='po
                 print('Singular matrix')
                 return src,R,t
         else:
-            raise ValueError(f'metrics: {metrics} not recognized.')
+            raise ValueError('metrics: {} not recognized.'.format(metrics))
         # Update dst and compute error
         src = np.matmul(R0,src.T) + t0
         src = src.T
@@ -197,7 +197,7 @@ def icp(src,dst,nv=None,n_iter=100,init_pose=[0,0,0],torlerance=1e-6,metrics='po
         current_err = np.sqrt((np.array(src-dst[indices[:,0]])**2).sum()/n_src)
 
         if verbose:
-            print(f'iter: {i}, error: {current_err}')
+            print('iter: {}, error: {}'.format(i,current_err))
             
         if  np.abs(current_err - prev_err) < torlerance:
             break
