@@ -6,13 +6,13 @@ Conference on Computer Vision and Pattern Recognition (CVPR) 2019, Oral Presenta
 
 |[Abstract](#abstract)|[Paper](#paper-arxiv)|[Code](#code-tbd)|[Results](#results)|[Acknowledgment](#acknowledgment)|
 
-![2D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_2D_sample1.gif)
-![2D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_2D_sample2.gif)
-![2D Mapping Process Example 3](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_2D_sample3.gif)
+![2D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_2D_sample1.gif)
+![2D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_2D_sample2.gif)
+![2D Mapping Process Example 3](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_2D_sample3.gif)
 
-![3D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample1.gif)
-![3D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample2.gif)
-![3D Mapping Process Example 3](https://github.com/ai4ce/DeepMapping/raw/master/resources/vis_AVD_sample3.gif)
+![3D Mapping Process Example 1](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_AVD_sample1.gif)
+![3D Mapping Process Example 2](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_AVD_sample2.gif)
+![3D Mapping Process Example 3](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/vis_AVD_sample3.gif)
 
 
 ### Abstract
@@ -31,18 +31,18 @@ To cite our paper:
 
 ### Code (TBD)
 <p align="center">
-<img src='./resources/ate_vs_epochs.jpg' width="600">
+<img src='./docs/resources/ate_vs_epochs.jpg' width="600">
 </p>
 
-![overview](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-overview.jpg)
+![overview](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/deepmapping-overview.jpg)
 
 ### Results
 #### 2D Mapping (Simulated Data)
-![2D Mapping Results 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-2Dmapping.jpg)
-![2D Mapping Results 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-2Dmapping2.jpg)
+![2D Mapping Results 1](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/deepmapping-2Dmapping.jpg)
+![2D Mapping Results 2](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/deepmapping-2Dmapping2.jpg)
 #### 3D Mapping (Real Data)
-![3D Mapping Results 1](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-3Dmapping.jpg)
-![3D Mapping Results 2](https://github.com/ai4ce/DeepMapping/raw/master/resources/deepmapping-3Dmapping2.jpg)
+![3D Mapping Results 1](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/deepmapping-3Dmapping.jpg)
+![3D Mapping Results 2](https://github.com/ai4ce/DeepMapping/raw/master/docs/resources/deepmapping-3Dmapping2.jpg)
 
 ### Acknowledgment
 This work was partially done while the authors were with MERL, and was supported in part by NYU Tandon School of Engineering and MERL. [Chen Feng](https://ai4ce.github.io) is the corresponding author. We gratefully acknowledge the helpful comments and suggestions from Yuichi Taguchi, Dong Tian, Weiyang Liu, and Alan Sullivan.
