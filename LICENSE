@@ -11,6 +11,6 @@ The code is copyrighted by the authors. Permission to copy and use
 This code provides an implementation of the method described in the
 following publication: 
 
-L. Ding and C. Feng, "DeepMapping: Unsupervised Map Estimation From 
+Li Ding and Chen Feng, "DeepMapping: Unsupervised Map Estimation From 
  Multiple Point Clouds," The IEEE Conference on Computer Vision and 
  Pattern Recognition (CVPR), June, 2019.
