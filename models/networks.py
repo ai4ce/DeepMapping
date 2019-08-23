@@ -35,11 +35,11 @@ class MLP(nn.Module):
         return self.mlp.forward(x)
 
 
-class ObsFeat(nn.Module):
-    """Feature extractor for observations"""
+class ObsFeat2D(nn.Module):
+    """Feature extractor for 1D organized point clouds"""
 
     def __init__(self, n_points, n_out=1024):
-        super(ObsFeat, self).__init__()
+        super(ObsFeat2D, self).__init__()
         self.n_out = n_out
         k = 3
         p = int(np.floor(k / 2)) + 2
@@ -60,10 +60,34 @@ class ObsFeat(nn.Module):
         return x
 
 
-class LocNetReg(nn.Module):
+class ObsFeatAVD(nn.Module):
+    """Feature extractor for 2D organized point clouds"""
+    def __init__(self, n_out=1024):
+        super(ObsFeatAVD, self).__init__()
+        self.n_out = n_out
+        k = 3
+        p = int(np.floor(k / 2)) + 2
+        self.conv1 = nn.Conv2d(3,64,kernel_size=k,padding=p,dilation=3)
+        self.conv2 = nn.Conv2d(64,128,kernel_size=k,padding=p,dilation=3)
+        self.conv3 = nn.Conv2d(128,256,kernel_size=k,padding=p,dilation=3)
+        self.conv4 = nn.Conv2d(256,self.n_out,kernel_size=k,padding=p,dilation=3)
+        self.amp = nn.AdaptiveMaxPool2d(1)
+
+    def forward(self, x):
+        assert(x.shape[1]==3),"the input size must be <Bx3xHxW> "
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))        
+        x = F.relu(self.conv3(x))
+        x = self.conv4(x)
+        x = self.amp(x) 
+        x = x.view(-1,self.n_out) #<Bxn_out>
+        return x
+
+
+class LocNetReg2D(nn.Module):
     def __init__(self, n_points, out_dims):
-        super(LocNetReg, self).__init__()
-        self.obs_feat_extractor = ObsFeat(n_points)
+        super(LocNetReg2D, self).__init__()
+        self.obs_feat_extractor = ObsFeat2D(n_points)
         n_in = self.obs_feat_extractor.n_out
         self.fc = MLP([n_in, 512, 256, out_dims])
 
@@ -71,6 +95,24 @@ class LocNetReg(nn.Module):
         obs = obs.transpose(1, 2)
         obs_feat = self.obs_feat_extractor(obs)
         obs = obs.transpose(1, 2)
+
+        x = self.fc(obs_feat)
+        return x
+
+
+class LocNetRegAVD(nn.Module):
+    def __init__(self, out_dims):
+        super(LocNetRegAVD, self).__init__()
+        self.obs_feat_extractor = ObsFeatAVD()
+        n_in = self.obs_feat_extractor.n_out
+        self.fc = MLP([n_in, 512, 256, out_dims])
+
+    def forward(self, obs):
+        # obs: <BxHxWx3>
+        bs = obs.shape[0]
+        obs = obs.permute(0,3,1,2) # <Bx3xHxW>
+        obs_feat = self.obs_feat_extractor(obs)
+        obs = obs.permute(0,2,3,1)
 
         x = self.fc(obs_feat)
         return x

@@ -5,8 +5,12 @@ from sklearn.neighbors import NearestNeighbors
 import sys
 
 def transform_to_global_2D(pose, obs_local):
-    # pose: <Bx3>, obs_local: <BxLx2>
-    # row-based matrix product
+    """ 
+    transform local point cloud to global frame
+    row-based matrix product
+    pose: <Bx3> each row represents <x,y,theta>
+    obs_local: <BxLx2> 
+    """
     L = obs_local.shape[1]
     # c0 is the loc of sensor in global coord. frame c0: <Bx2>
     c0, theta0 = pose[:, 0:2], pose[:, 2]
@@ -18,6 +22,40 @@ def transform_to_global_2D(pose, obs_local):
 
     obs_global = torch.bmm(obs_local, R_transpose) + c0
     return obs_global
+
+def transform_to_global_AVD(pose, obs_local):
+    """
+    transform obs local coordinate to global corrdinate frame
+    :param pose: <Bx3> <x,z,theta> y = 0
+    :param obs_local: <BxLx3> (unorganized) or <BxHxWx3> (organized)
+    :return obs_global: <BxLx3> (unorganized) or <BxHxWx3> (organized)
+    """
+    is_organized = 1 if len(obs_local.shape) == 4 else 0
+    b = obs_local.shape[0]
+    if is_organized:
+        H,W = obs_local.shape[1:3]
+        obs_local = obs_local.view(b,-1,3) # <BxLx3>
+    
+    L = obs_local.shape[1]
+
+    c0, theta0 = pose[:,0:2],pose[:,2] # c0 is the loc of sensor in global coord frame c0 <Bx2> <x,z>
+
+    zero = torch.zeros_like(c0[:,:1])
+    c0 = torch.cat((c0,zero),-1) # <Bx3> <x,z,y=0>
+    c0 = c0[:,[0,2,1]] # <Bx3> <x,y=0,z>
+    c0 = c0.unsqueeze(1).expand(-1,L,-1) # <BxLx3>
+    
+    cos = torch.cos(theta0).unsqueeze(-1).unsqueeze(-1)
+    sin = torch.sin(theta0).unsqueeze(-1).unsqueeze(-1)
+    zero = torch.zeros_like(sin)
+    one = torch.ones_like(sin)
+    
+    R_y_transpose = torch.cat((cos,zero,-sin,zero,one,zero,sin,zero,cos),dim=1).reshape(-1,3,3)
+    obs_global = torch.bmm(obs_local,R_y_transpose) + c0
+    if is_organized:
+        obs_global = obs_global.view(b,H,W,3)
+    return obs_global
+
 
 def rigid_transform_kD(A, B):
     """
@@ -240,17 +278,16 @@ def remove_invalid_pcd(pcd):
     valid_pcd = open3d.select_down_sample(pcd,valid_ind)
     return valid_pcd
 
-
-
 def ang2mat(theta):
     c = np.cos(theta)
     s = np.sin(theta)
     R = np.array([[c,-s],[s,c]])
     return R
 
-def cat_pose(pose0,pose1):
+def cat_pose_2D(pose0,pose1):
     """
     pose0, pose1: <Nx3>, numpy array
+    each row: <x,y,theta>
     """
     assert(pose0.shape==pose1.shape)
     n_pose = pose0.shape[0]
@@ -267,3 +304,25 @@ def cat_pose(pose0,pose1):
         pose_out[i,:2] = t.T
         pose_out[i,2] = theta
     return pose_out
+
+def convert_depth_map_to_pc(depth,fxy,cxy,max_depth=7000,depth_scale=2000):
+    """
+    create point cloud from depth map and camera instrinsic
+    depth: <hxw> numpy array
+    fxy: [fx,fy]
+    cxy: [cx,cy]
+    """
+    fx,fy = fxy 
+    cx,cy = cxy
+    h,w = depth.shape
+    
+    c,r = np.meshgrid(range(1,w+1), range(1,h+1))
+    invalid = depth >= max_depth
+    depth[invalid] = 0
+
+    z = depth / float(depth_scale)
+    x = z * (c-cx) / fx
+    y = z * (r-cy) / fy
+    xyz = np.dstack((x,y,z)).astype(np.float32)
+    return xyz
+    
