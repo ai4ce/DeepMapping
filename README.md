@@ -32,11 +32,11 @@ Running on GPU is highly recommended. The code has been tested with Python 3.6.5
 
 # Getting Started
 ## Dataset
-A set of 2D simulated point clouds is provided as ```./data/2D/v1_pose0.tar```. Extract the tar file:
+Simulated 2D point clouds are provided as ```./data/2D/all_poses.tar```. Extract the tar file:
 ```bash
-tar -xvf ./data/2D/v1_pose0.tar -C ./data/2D/
+tar -xvf ./data/2D/all_poses.tar -C ./data/2D/
 ```
-A new sub-directory ```./data/2D/v1_pose0/``` will be created. In this folder, there are 256 local point clouds saved in PCD file format. The corresponding ground truth sensor poses is saved as ```gt_pose.mat``` file, which is a 256-by-3 matrix. The i-th row in the matrix represent the sensor pose \[x,y,theta\] for the i-th point cloud.
+A set of sub-directories will be created. For example, ```./data/2D/v1_pose0``` corresponds to the trajectory 0 sampled from the environment v1. In this folder, there are 256 local point clouds saved in PCD file format. The corresponding ground truth sensor poses is saved as ```gt_pose.mat``` file, which is a 256-by-3 matrix. The i-th row in the matrix represent the sensor pose \[x,y,theta\] for the i-th point cloud.
 
 ## Solving Registration As Unsupervised Training
 To run DeepMapping, execute the script 
