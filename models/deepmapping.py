@@ -5,7 +5,6 @@ import torch.nn as nn
 from .networks import LocNetReg2D, LocNetRegAVD, MLP
 from utils import transform_to_global_2D, transform_to_global_AVD
 
-
 def get_M_net_inputs_labels(occupied_points, unoccupited_points):
     """
     get global coord (occupied and unoccupied) and corresponding labels
@@ -20,19 +19,20 @@ def get_M_net_inputs_labels(occupied_points, unoccupited_points):
     return inputs, gt
 
 
-def sample_unoccupied_point(local_point_cloud, n_samples):
+def sample_unoccupied_point(local_point_cloud, n_samples, center):
     """
     sample unoccupied points along rays in local point cloud
-    sensor located at origin
-    local_point_cloud: <BxNxk>
+    local_point_cloud: <BxLxk>
     n_samples: number of samples on each ray
+    center: location of sensor <Bx1xk>
     """
     bs, L, k = local_point_cloud.shape
+    center = center.expand(-1,L,-1) # <BxLxk>
     unoccupied = torch.zeros(bs, L * n_samples, k,
                              device=local_point_cloud.device)
     for idx in range(1, n_samples + 1):
         fac = torch.rand(1).item()
-        unoccupied[:, (idx - 1) * L:idx * L, :] = local_point_cloud * fac
+        unoccupied[:, (idx - 1) * L:idx * L, :] = center + (local_point_cloud-center) * fac
     return unoccupied
 
 class DeepMapping2D(nn.Module):
@@ -44,8 +44,9 @@ class DeepMapping2D(nn.Module):
         self.loc_net = LocNetReg2D(n_points=n_obs, out_dims=3)
         self.occup_net = MLP(dim)
 
-    def forward(self, obs_local,valid_points):
+    def forward(self, obs_local,valid_points,sensor_pose):
         # obs_local: <BxLx2>
+        # sensor_pose: init pose <Bx1x3>
         self.obs_local = deepcopy(obs_local)
         self.valid_points = valid_points
 
@@ -55,8 +56,9 @@ class DeepMapping2D(nn.Module):
             self.pose_est, self.obs_local)
 
         if self.training:
+            sensor_center = sensor_pose[:,:,:2]
             self.unoccupied_local = sample_unoccupied_point(
-                self.obs_local, self.n_samples)
+                self.obs_local, self.n_samples,sensor_center)
             self.unoccupied_global = transform_to_global_2D(
                 self.pose_est, self.unoccupied_local)
 
@@ -91,7 +93,7 @@ class DeepMapping_AVD(nn.Module):
         self.loc_net = LocNetRegAVD(out_dims=3) # <x,z,theta> y=0
         self.occup_net = MLP(dim)
 
-    def forward(self, obs_local,valid_points):
+    def forward(self, obs_local,valid_points,sensor_pose):
         # obs_local: <BxHxWx3> 
         # valid_points: <BxHxW>
         
@@ -107,8 +109,9 @@ class DeepMapping_AVD(nn.Module):
             self.pose_est, self.obs_local)
 
         if self.training:
+            sensor_center = sensor_pose[:,:,:2]
             self.unoccupied_local = sample_unoccupied_point(
-                self.obs_local, self.n_samples)
+                self.obs_local, self.n_samples,sensor_center)
             self.unoccupied_global = transform_to_global_AVD(
                 self.pose_est, self.unoccupied_local)
 

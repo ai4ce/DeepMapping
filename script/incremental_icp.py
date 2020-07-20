@@ -26,8 +26,8 @@ n_pc = len(dataset)
 pose_est = np.zeros((n_pc,3),dtype=np.float32)
 print('running icp')
 for idx in range(n_pc-1):
-    dst,valid_dst = dataset[idx] 
-    src,valid_src = dataset[idx+1]
+    dst,valid_dst,_ = dataset[idx] 
+    src,valid_src,_ = dataset[idx+1]
     
     dst = dst[valid_dst,:].numpy()
     src = src[valid_src,:].numpy()
@@ -48,6 +48,6 @@ np.save(save_name,pose_est)
 
 print('saving results')
 pose_est = torch.from_numpy(pose_est)
-local_pc,valid_id = dataset[:]
+local_pc,valid_id,_ = dataset[:]
 global_pc = utils.transform_to_global_2D(pose_est,local_pc)
 utils.plot_global_point_cloud(global_pc,pose_est,valid_id,checkpoint_dir)

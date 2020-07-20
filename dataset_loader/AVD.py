@@ -68,7 +68,9 @@ class AVD(Dataset):
             pcd = pcd.unsqueeze(0)  # <1XHxWx3>
             pose = self._trans_by_pose[index, :].unsqueeze(0)  # <1x3>
             pcd = utils.transform_to_global_AVD(pose, pcd).squeeze(0)
-        return pcd,valid_points
+        else:
+            pose = torch.zeros(1,3,dtype=torch.float32)
+        return pcd,valid_points,pose
 
     def __len__(self):
         return self.n_pc

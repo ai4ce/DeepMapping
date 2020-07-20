@@ -54,7 +54,9 @@ class SimulatedPointCloud(Dataset):
             pcd = pcd.unsqueeze(0)  # <1XLx2>
             pose = self._trans_by_pose[index, :].unsqueeze(0)  # <1x3>
             pcd = utils.transform_to_global_2D(pose, pcd).squeeze(0)
-        return pcd,valid_points
+        else:
+            pose = torch.zeros(1,3,dtype=torch.float32)
+        return pcd,valid_points,pose
 
     def __len__(self):
         return len(self.point_clouds)

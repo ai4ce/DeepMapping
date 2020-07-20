@@ -16,9 +16,9 @@ N=19
 LOG=20
 
 ### training from scratch
-python train_2D.py --name $NAME -d $DATA_DIR -e $EPOCH -b $BS -l $LOSS -n $N --log_interval $LOG
+#python train_2D.py --name $NAME -d $DATA_DIR -e $EPOCH -b $BS -l $LOSS -n $N --log_interval $LOG
 
 #### warm start
 #### uncomment the following commands to run DeepMapping with a warm start. This requires an initial sensor pose that can be computed using ./script/run_icp.sh
-#INIT_POSE=../results/2D/icp_v1_pose0/pose_est.npy
-#python train_2D.py --name $NAME -d $DATA_DIR -i $INIT_POSE -e $EPOCH -b $BS -l $LOSS -n $N --log_interval $LOG
+INIT_POSE=../results/2D/icp_v1_pose0/pose_est.npy
+python train_2D.py --name $NAME -d $DATA_DIR -i $INIT_POSE -e $EPOCH -b $BS -l $LOSS -n $N --log_interval $LOG

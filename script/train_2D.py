@@ -62,10 +62,11 @@ for epoch in range(opt.n_epochs):
     training_loss= 0.0
     model.train()
 
-    for index,(obs_batch,valid_pt) in enumerate(loader):
+    for index,(obs_batch,valid_pt,pose_batch) in enumerate(loader):
         obs_batch = obs_batch.to(device)
         valid_pt = valid_pt.to(device)
-        loss = model(obs_batch,valid_pt)
+        pose_batch = pose_batch.to(device)
+        loss = model(obs_batch,valid_pt,pose_batch)
 
         optimizer.zero_grad()
         loss.backward()
@@ -83,10 +84,11 @@ for epoch in range(opt.n_epochs):
         pose_est_np = []
         with torch.no_grad():
             model.eval()
-            for index,(obs_batch,valid_pt) in enumerate(loader):
+            for index,(obs_batch,valid_pt,pose_batch) in enumerate(loader):
                 obs_batch = obs_batch.to(device)
                 valid_pt = valid_pt.to(device)
-                model(obs_batch,valid_pt)
+                pose_batch = pose_batch.to(device)
+                model(obs_batch,valid_pt,pose_batch)
 
                 obs_global_est_np.append(model.obs_global_est.cpu().detach().numpy())
                 pose_est_np.append(model.pose_est.cpu().detach().numpy())
