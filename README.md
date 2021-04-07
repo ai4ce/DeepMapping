@@ -55,6 +55,6 @@ The coarse registration can be further improved by DeepMapping. To do so, simply
 ## Evaluation
 The estimated sensor pose is saved as numpy array ```pose_est.npy```. To evaluate the registration, execute the script
 ```bash
-./script/run_eval.sh
+./script/run_eval_2D.sh
 ```
 Absolute trajectory error will be computed as error metrics.
