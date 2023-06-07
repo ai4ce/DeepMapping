@@ -58,3 +58,6 @@ The estimated sensor pose is saved as numpy array ```pose_est.npy```. To evaluat
 ./script/run_eval_2D.sh
 ```
 Absolute trajectory error will be computed as error metrics.
+
+## Related Project
+[DeepMapping2 (CVPR'2023) for large-scale LiDAR mapping](https://github.com/ai4ce/DeepMapping2)
